@@ -14,6 +14,7 @@
 extern "C" {
 #endif
 
+#include "config.h"
 #include <stdio.h>
 
 #define min(a,b) (((a) < (b)) ? (a) : (b))

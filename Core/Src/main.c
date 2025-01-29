@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -94,6 +95,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   RetargetInit(&huart2);
   uint8_t res = mpu6050_basic_init(MPU6050_ADDRESS_AD0_LOW);
@@ -130,7 +132,7 @@ int main(void)
     }
 
     // Print the data
-    print("gx: %f, gy: %f, gz: %f, dx: %f, dy: %f, dz: %f, t: %f\r\n", g[0], g[1], g[2], dps[0], dps[1], dps[2], degrees);
+    print("gx: %.2f, gy: %.2f, gz: %.2f, dx: %.2f, dy: %.2f, dz: %.2f, t: %.2f\r\n", g[0], g[1], g[2], dps[0], dps[1], dps[2], degrees);
 
     HAL_Delay(1000);
     /* USER CODE END WHILE */

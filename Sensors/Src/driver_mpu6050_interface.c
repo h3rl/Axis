@@ -35,6 +35,11 @@
  */
 
 #include "driver_mpu6050_interface.h"
+#include "config.h"
+#include "util.h"
+#include "i2c.h"
+
+#include <stdarg.h>
 
 /**
  * @brief  interface iic bus init
@@ -73,6 +78,26 @@ uint8_t mpu6050_interface_iic_deinit(void)
  */
 uint8_t mpu6050_interface_iic_read(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len)
 {
+    HAL_StatusTypeDef status;
+    // status = HAL_I2C_Master_Transmit(&hi2c1, addr << 1, &reg, 1, 0xFF);
+    // if(status != HAL_OK)
+    // {
+    //     print("HAL_I2C_Master_Transmit failed!\r\n");
+    //     return 1;
+    // }
+    
+    // status = HAL_I2C_Master_Receive(&hi2c1, addr << 1, buf, len, 0xFF);
+    // if(status != HAL_OK)
+    // {
+    //     print("HAL_I2C_Master_Receive failed!\r\n");
+    //     return 1;
+    // }
+    status = HAL_I2C_Mem_Read(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, buf, len, 0xFF);
+    if (status != HAL_OK)
+    {
+        print("I2C read failed!\r\n");
+        return 1;
+    }
     return 0;
 }
 
@@ -89,6 +114,13 @@ uint8_t mpu6050_interface_iic_read(uint8_t addr, uint8_t reg, uint8_t *buf, uint
  */
 uint8_t mpu6050_interface_iic_write(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len)
 {
+    HAL_StatusTypeDef status;
+    status = HAL_I2C_Mem_Write(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, buf, len, 0xFF);
+    if (status != HAL_OK)
+    {
+        print("I2C write failed!\r\n");
+        return 1;
+    }
     return 0;
 }
 
@@ -99,7 +131,7 @@ uint8_t mpu6050_interface_iic_write(uint8_t addr, uint8_t reg, uint8_t *buf, uin
  */
 void mpu6050_interface_delay_ms(uint32_t ms)
 {
-
+    HAL_Delay(ms);
 }
 
 /**
@@ -109,7 +141,14 @@ void mpu6050_interface_delay_ms(uint32_t ms)
  */
 void mpu6050_interface_debug_print(const char *const fmt, ...)
 {
-
+#ifdef ENABLE_LOGGING
+    va_list args;
+    va_start(args, fmt);
+    vprintf(fmt, args);
+    va_end(args);
+#else
+    (void)fmt;
+#endif
 }
 
 /**
