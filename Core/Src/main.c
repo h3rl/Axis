@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "util.h"
 #include "retarget.h"
+#include "driver_mpu6050_basic.h"
 
 #include "stm32f1xx.h"
 #include <stdio.h>
@@ -95,6 +96,13 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   RetargetInit(&huart2);
+  uint8_t res = mpu6050_basic_init(MPU6050_ADDRESS_AD0_LOW);
+  if(res != 0)
+  {
+    print("MPU6050 init failed!\r\n");
+    return 1;
+  }
+  print("MPU6050 ok\r\n");
 
   /* USER CODE END 2 */
 
@@ -105,10 +113,32 @@ int main(void)
   {
     HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
     HAL_Delay(100);
+
+    float g[3];
+    float dps[3];
+    float degrees;
+    if(mpu6050_basic_read(g, dps) != 0)
+    {
+      print("MPU6050 read failed!\r\n");
+      break;
+    }
+
+    if(mpu6050_basic_read_temperature(&degrees) != 0)
+    {
+      print("MPU6050 read temperature failed!\r\n");
+      break;
+    }
+
+    // Print the data
+    print("gx: %f, gy: %f, gz: %f, dx: %f, dy: %f, dz: %f, t: %f\r\n", g[0], g[1], g[2], dps[0], dps[1], dps[2], degrees);
+
+    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
+  mpu6050_basic_deinit();
+  return 0;
   /* USER CODE END 3 */
 }
 

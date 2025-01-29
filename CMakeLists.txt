@@ -50,11 +50,15 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     "Core/Src/retarget.c"
     "Core/Src/util.c"
+    "Sensors/Src/driver_mpu6050_interface.c"
+    "Sensors/Src/driver_mpu6050.c"
+    "Sensors/Src/driver_mpu6050_basic.c"
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    "Sensors/Inc"
 )
 
 # Add project symbols (macros)
