@@ -34,6 +34,7 @@
             "dependsOn": [
                 "CMake: clean rebuild",
                 "CubeProg: Flash project (SWD)",
+                "Open and Clear serial monitor"
             ]
         },
                 {
@@ -57,6 +58,22 @@
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Open and Clear serial monitor",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Open serial monitor",
+                "Clear serial monitor"
+            ]
+        },
+        {
+            "label": "Open serial monitor",
+            "command": "${command:vscode-serial-monitor.monitor0.focus}"
+        },
+        {
+            "label": "Clear serial monitor",
+            "command": "${command:vscode-serial-monitor.clearOutput}"
         }
     ]
 }
