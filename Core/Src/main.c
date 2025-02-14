@@ -27,8 +27,11 @@
 #include "util.h"
 #include "retarget.h"
 #include "driver_mpu6050_basic.h"
+#include "rcd/matrix.h"
+#include "rcd/moore_penrose_pseudo_inverse.h"
 
 #include "stm32f1xx.h"
+#include <math.h>
 #include <stdio.h>
 
 /* USER CODE END Includes */
@@ -51,7 +54,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -105,6 +107,21 @@ int main(void)
     return 1;
   }
   print("MPU6050 ok\r\n");
+
+  // Test matrix multiplication
+  matrix_t B[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+  };
+  matrix_t A[3][2] = {
+    {1, 2},
+    {3, 4},
+    {5, 6}
+  };
+  matrix_t AB[3][3] = {0};
+  matrix_mul(3, 2, A, 2, 3, B, AB);
+  print("AB = \r\n");
+  matrix_print(3, 3, AB);
 
   /* USER CODE END 2 */
 

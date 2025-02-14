@@ -18,6 +18,10 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+
+# Add third party libraries
+add_subdirectory(Thirdparty)
+
 # Set the project name
 set(CMAKE_PROJECT_NAME Axis)
 
@@ -71,6 +75,13 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
 
     # Add user defined libraries
+    RcdMathLib::RcdMathLib
+)
+
+# Add the -Wno-unused-variable flag to the target
+target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE
+    $<$<COMPILE_LANGUAGE:C>:-Wno-unused-variable>
+    $<$<COMPILE_LANGUAGE:CXX>:-Wno-unused-variable>
 )
 
 target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -u _printf_float)
