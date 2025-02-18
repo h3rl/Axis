@@ -108,21 +108,6 @@ int main(void)
     return 1;
   }
 
-  // Test matrix multiplication
-  matrix_t B[2][3] = {
-    {1, 2, 3},
-    {4, 5, 6}
-  };
-  matrix_t A[3][2] = {
-    {1, 2},
-    {3, 4},
-    {5, 6}
-  };
-  matrix_t AB[3][3] = {0};
-  matrix_mul(3, 2, A, 2, 3, B, AB);
-  print("AB = \r\n");
-  matrix_print(3, 3, AB);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -134,13 +119,10 @@ int main(void)
     {
       return 1;
     }
-    
-    // Send imu data to huart as raw bytes
-    if(HAL_UART_Transmit(&huart2, (uint8_t*)&imu, sizeof(imu_t), 100) != HAL_OK)
-    {
-      print("Failed to send imu data!\r\n");
-      return 1;
-    }
+
+    // Send imu data to huart as formatted string
+    // Format: <timestamp> <gx> <gy> <gz> <dpsx> <dpsy> <dpsz>
+    printf("%lu %f %f %f %f %f %f\r\n", HAL_GetTick(), imu.g[0], imu.g[1], imu.g[2], imu.dps[0], imu.dps[1], imu.dps[2]);
 
     /* USER CODE END WHILE */
 

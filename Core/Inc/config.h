@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-#define ENABLE_LOGGING
+//#define ENABLE_LOGGING
 
 #ifdef __cplusplus
 }
