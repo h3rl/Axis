@@ -54,6 +54,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     "Core/Src/retarget.c"
     "Core/Src/util.c"
+    "Core/Src/imu.c"
     "Sensors/Src/driver_mpu6050_interface.c"
     "Sensors/Src/driver_mpu6050.c"
     "Sensors/Src/driver_mpu6050_basic.c"
