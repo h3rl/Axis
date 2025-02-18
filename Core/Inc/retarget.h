@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-#include "main.h"
+#include <stm32f1xx_hal.h>
 
 void RetargetInit(UART_HandleTypeDef *huart);
 
