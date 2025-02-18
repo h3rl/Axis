@@ -1,0 +1,10 @@
+<svg width="290" height="290" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+        </marker>
+    </defs>
+    <line x1="0" y1="0" x2="40" y2="0" stroke="black" stroke-width="3" marker-end="url(#arrowhead)" transform="rotate(10)"/>
+    <line x1="0" y1="0" x2="40" y2="0" stroke="black" stroke-width="3" marker-end="url(#arrowhead)" transform="rotate(130)"/>
+    <line x1="0" y1="0" x2="40" y2="0" stroke="black" stroke-width="3" marker-end="url(#arrowhead)" transform="rotate(250)"/>
+</svg>

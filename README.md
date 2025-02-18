@@ -1,19 +1,10 @@
 <!-- Logo Section  -->
 <div align="center">
-    <svg width="290" height="290" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="6" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
-            </marker>
-        </defs>
-        <line x1="0" y1="0" x2="40" y2="0" stroke="black" stroke-width="3" marker-end="url(#arrowhead)" transform="rotate(10)"/>
-        <line x1="0" y1="0" x2="40" y2="0" stroke="black" stroke-width="3" marker-end="url(#arrowhead)" transform="rotate(130)"/>
-        <line x1="0" y1="0" x2="40" y2="0" stroke="black" stroke-width="3" marker-end="url(#arrowhead)" transform="rotate(250)"/>
-    </svg>
+    <h1>Axis</h1>
+    <img src="./assets/logo.svg">
 </div>
 
 <div align="center">
-    <p style="font-size:3rem; font-weight: bold;">Axis</p>
     <p>STM32-based IMU orientation estimation with Kalman filtering</p>
 </div>
 
@@ -47,9 +38,9 @@ Comming soon?
 2. Install recommended VS Code extensions when prompted
 
 ## Project Roadmap
-<input checked="" disabled="" type="checkbox"> Basic IMU readings implementation<br>
-<input disabled="" type="checkbox"> Kalman filter orientation estimation<br>
-<input disabled="" type="checkbox"> DMP integration and comparison
+- [x] Basic IMU readings implementation
+- [ ] Kalman filter orientation estimation
+- [ ] DMP integration and comparison
 
 ## Credits
 
