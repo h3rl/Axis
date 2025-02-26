@@ -130,8 +130,8 @@ int main(void)
     }
 
     // Send imu data to huart as formatted string
-    // Format: <timestamp> <gx> <gy> <gz> <dpsx> <dpsy> <dpsz>
-    printf("%lu %f %f %f %f %f %f\r\n", HAL_GetTick(), imu.acc[0], imu.acc[1], imu.acc[2], imu.gyr[0], imu.gyr[1], imu.gyr[2]);
+    // Format: <gx> <gy> <gz> <dpsx> <dpsy> <dpsz>
+    printf("%f %f %f %f %f %f\r\n", imu.acc[0], imu.acc[1], imu.acc[2], imu.gyr[0], imu.gyr[1], imu.gyr[2]);
 
     /* USER CODE END WHILE */
 
