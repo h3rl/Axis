@@ -113,8 +113,17 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   print("Initialized!\r\n");
+  uint32_t last_time = HAL_GetTick();
   while (1)
   {
+    if(HAL_GetTick() - last_time < 10)
+    {
+      continue;
+    }
+    // Update last_time
+    last_time += 10;
+
+    // Process imu data
     if(imu_process(&imu) != 0)
     {
       return 1;
@@ -122,7 +131,7 @@ int main(void)
 
     // Send imu data to huart as formatted string
     // Format: <timestamp> <gx> <gy> <gz> <dpsx> <dpsy> <dpsz>
-    printf("%lu %f %f %f %f %f %f\r\n", HAL_GetTick(), imu.g[0], imu.g[1], imu.g[2], imu.dps[0], imu.dps[1], imu.dps[2]);
+    printf("%lu %f %f %f %f %f %f\r\n", HAL_GetTick(), imu.acc[0], imu.acc[1], imu.acc[2], imu.gyr[0], imu.gyr[1], imu.gyr[2]);
 
     /* USER CODE END WHILE */
 

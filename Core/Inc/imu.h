@@ -16,8 +16,8 @@ extern "C" {
 
 typedef struct imu_t
 {
-    float g[3];
-    float dps[3];
+    float acc[3]; // [m/s^2]
+    float gyr[3]; // [dps]
 } imu_t;
 
 int imu_init(imu_t *imu);
