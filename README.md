@@ -23,7 +23,7 @@ Comming soon?
 ## Features
 - STM32F103RBTx microcontroller
 - MPU6050 IMU integration
-- Kalman filter for orientation estimation
+- Extended Kalman filter(EKF) for orientation estimation
 - Built with CMake and STM32CubeMX
 
 ## Getting started
@@ -39,7 +39,8 @@ Comming soon?
 
 ## Project Roadmap
 - [x] Basic IMU readings implementation
-- [ ] Kalman filter orientation estimation
+- [x] Extended Kalman filter python POC
+- [ ] Extended Kalman filter c implementation
 - [ ] DMP integration and comparison
 
 ## Credits
