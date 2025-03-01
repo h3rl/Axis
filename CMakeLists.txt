@@ -47,28 +47,32 @@ add_subdirectory(cmake/stm32cubemx)
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
+    "Drivers/CMSIS/Lib/GCC"
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    "Core/Src/ekf.c"
+    "Core/Src/imu.c"
     "Core/Src/retarget.c"
     "Core/Src/util.c"
-    "Core/Src/imu.c"
-    "Sensors/Src/driver_mpu6050_interface.c"
     "Sensors/Src/driver_mpu6050.c"
     "Sensors/Src/driver_mpu6050_basic.c"
+    "Sensors/Src/driver_mpu6050_interface.c"
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    "Drivers/CMSIS/DSP/Include"
     "Sensors/Inc"
 )
 
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined symbols
+    ARM_MATH_CM4
 )
 
 # Add linked libraries
@@ -76,6 +80,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
 
     # Add user defined libraries
+    arm_cortexM3l_math
     RcdMathLib::RcdMathLib
 )
 
